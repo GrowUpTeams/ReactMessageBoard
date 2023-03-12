@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+import { Button } from '@mui/material';
+import AddMessageDialog from './components/AddMessageDialog';
+import NotistackProvider from './components/NotistackProvider';
 
 function App() {
+  const [openAddMessageDialog, setOpenAddMessageDialog] = useState();
+
+  const handleOpenAddMessageDialog = () => {
+    setOpenAddMessageDialog(true);
+  };
+  const handleCloseAddMessageDialog = () => {
+    setOpenAddMessageDialog(false);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <NotistackProvider>
+      <Provider store={store}>
+        <div>
+          <Button
+            onClick={() => {
+              handleOpenAddMessageDialog();
+            }}
+          >
+            Add a Message
+          </Button>
+          <AddMessageDialog
+            open={openAddMessageDialog}
+            onClose={handleCloseAddMessageDialog}
+          />
+        </div>
+      </Provider>
+    </NotistackProvider>
   );
 }
 
