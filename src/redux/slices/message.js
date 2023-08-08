@@ -45,6 +45,7 @@ export function getMessages({ enqueueSuccess }) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get('/message/list');
+      console.log(response);
       dispatch(slice.actions.getMessagesSuccess(response.data));
       enqueueSuccess(response.data);
     } catch (error) {
@@ -58,10 +59,11 @@ export function createMessage({ data, enqueueSuccess }) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.post('/message/add', data);
+      console.log(response);
       dispatch(slice.actions.createMessageSuccess(response.data));
       enqueueSuccess(response.data);
     } catch (error) {
-      dispatch(slice.actions.hasError(error.message));
+      dispatch(slice.actions.hasError(error));
     }
   };
 }

@@ -13,12 +13,13 @@ import {
 import { Form, FormikProvider, useFormik } from 'formik';
 import { useSnackbar } from 'notistack';
 import { createMessage, hasError } from '../redux/slices/message';
+import { LoadingButton } from '@mui/lab';
 
 function AddMessageDialog(props) {
   const { onClose, open } = props;
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
-  const { error } = useSelector((state) => state);
+  const { error, isLoading } = useSelector((state) => state.message);
   const [initialValues, setInitialValues] = useState({
     title: '',
     content: ''
@@ -111,7 +112,9 @@ function AddMessageDialog(props) {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleConfirm}>Confirm</Button>
+        <LoadingButton loading={isLoading} onClick={handleConfirm}>
+          Confirm
+        </LoadingButton>
       </DialogActions>
     </Dialog>
   );
