@@ -4,6 +4,7 @@ import { store } from './redux/store';
 import { Button } from '@mui/material';
 import AddMessageDialog from './components/AddMessageDialog';
 import NotistackProvider from './components/NotistackProvider';
+import MessageTable from './components/MessageTable';
 
 function App() {
   const [openAddMessageDialog, setOpenAddMessageDialog] = useState();
@@ -29,6 +30,7 @@ function App() {
             open={openAddMessageDialog}
             onClose={handleCloseAddMessageDialog}
           />
+          <MessageTable />
         </div>
       </Provider>
     </NotistackProvider>
