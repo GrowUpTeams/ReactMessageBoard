@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { Form, FormikProvider, useFormik } from 'formik';
 import { useSnackbar } from 'notistack';
-import { createMessage, hasError } from '../redux/slices/message';
+import { createMessage, getMessages, hasError } from '../redux/slices/message';
 import { LoadingButton } from '@mui/lab';
 
 function AddMessageDialog(props) {
@@ -49,6 +49,7 @@ function AddMessageDialog(props) {
             data: values,
             enqueueSuccess: () => {
               enqueueSnackbar('Successfully added', { variant: 'success' });
+              dispatch(getMessages({}));
               resetForm();
               onClose();
             }
