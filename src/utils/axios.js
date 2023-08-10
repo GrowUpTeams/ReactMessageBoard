@@ -7,6 +7,7 @@ const NODE_ENV = process.env.NODE_ENV;
 
 console.log(process.env);
 
+console.log(NODE_ENV);
 axiosInstance.defaults.baseURL =
   NODE_ENV === 'production'
     ? 'https://prod-message-board-api.onrender.com'

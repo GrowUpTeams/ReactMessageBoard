@@ -40,7 +40,7 @@ export const { hasError } = slice.actions;
 
 // --------------------------------------------------------------------------------------------
 
-export function getMessages({ enqueueSuccess }) {
+export function getMessages({ enqueueSuccess = () => null }) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {

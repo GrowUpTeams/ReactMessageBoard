@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { Button } from '@mui/material';
+import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import AddMessageDialog from './components/AddMessageDialog';
 import NotistackProvider from './components/NotistackProvider';
 import MessageTable from './components/MessageTable';
@@ -18,19 +18,31 @@ function App() {
   return (
     <NotistackProvider>
       <Provider store={store}>
-        <div>
-          <Button
-            onClick={() => {
-              handleOpenAddMessageDialog();
-            }}
-          >
-            Add a Message
-          </Button>
-          <AddMessageDialog
-            open={openAddMessageDialog}
-            onClose={handleCloseAddMessageDialog}
-          />
-          <MessageTable />
+        <div style={{ width: '100%', minHeight: '100vh' }}>
+          <Container sx={{ my: 5 }}>
+            <Stack
+              spacing={1}
+              sx={{ mx: 2, mb: 1 }}
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Typography variant="h5">Message Board</Typography>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  handleOpenAddMessageDialog();
+                }}
+              >
+                Add a Message
+              </Button>
+            </Stack>
+            <AddMessageDialog
+              open={openAddMessageDialog}
+              onClose={handleCloseAddMessageDialog}
+            />
+            <MessageTable />
+          </Container>
         </div>
       </Provider>
     </NotistackProvider>
