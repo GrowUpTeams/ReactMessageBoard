@@ -9,7 +9,8 @@ import {
   List,
   ListItem,
   ListItemAvatar,
-  ListItemText
+  ListItemText,
+  Typography
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
@@ -33,7 +34,7 @@ function MessageItem({ message }) {
 function MessageTable({}) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { messages } = useSelector((state) => state.message);
+  const { messages, isLoading } = useSelector((state) => state.message);
 
   useEffect(() => {
     dispatch(getMessages({ enqueueSuccess: () => null }));
@@ -42,6 +43,9 @@ function MessageTable({}) {
   return (
     <Box className={classes.root}>
       <Card sx={{ mx: 2 }}>
+        {messages.length === 0 && isLoading && (
+          <Typography>Loading...</Typography>
+        )}
         <List sx={{ width: '100%' }}>
           {messages.map((message, i) => {
             const displayDivider = i < messages.length - 1;
