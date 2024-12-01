@@ -13,6 +13,7 @@ import {
   Typography
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import MessageTableHeader from './MessageTableHeader';
 
 const useStyles = makeStyles((theme) => ({
   root: {}
@@ -43,6 +44,7 @@ function MessageTable({}) {
   return (
     <Box className={classes.root}>
       <Card sx={{ mx: 2 }}>
+        <MessageTableHeader />
         {messages.length === 0 && isLoading && (
           <Typography>Loading...</Typography>
         )}
