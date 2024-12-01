@@ -5,7 +5,6 @@ import {
   Avatar,
   Box,
   Card,
-  Divider,
   List,
   ListItem,
   ListItemAvatar,
@@ -21,14 +20,26 @@ const useStyles = makeStyles((theme) => ({
 
 function MessageItem({ message }) {
   return (
-    <Box>
+    <Card
+      sx={{
+        borderRadius: 2,
+        boxShadow: 5,
+        margin: '15px 20px',
+        bgcolor: 'rgba(249, 249, 249, 1)'
+      }}
+    >
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar />
         </ListItemAvatar>
-        <ListItemText primary={message.title} secondary={message.content} />
+        <ListItemText
+          primary={message.title}
+          secondary={message.content}
+          primaryTypographyProps={{ fontWeight: 'bold' }}
+          secondaryTypographyProps={{ color: 'text.secondary' }}
+        />
       </ListItem>
-    </Box>
+    </Card>
   );
 }
 
@@ -50,11 +61,9 @@ function MessageTable({}) {
         )}
         <List sx={{ width: '100%' }}>
           {messages.map((message, i) => {
-            const displayDivider = i < messages.length - 1;
             return (
               <Fragment>
                 <MessageItem message={message} />
-                {displayDivider && <Divider variant="inset" component="li" />}
               </Fragment>
             );
           })}
